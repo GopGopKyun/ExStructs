@@ -1,0 +1,91 @@
+#include <stdio.h>
+#include <stdio.h>
+#include <string.h>
+
+struct banda{
+    char nome[50];
+    char tipo[50];
+    int integrantes;
+    int ranking;
+} banda[5];
+
+void rank(){
+    
+    int a;
+    printf("Insira um numero de 1 a 5: ");
+    scanf("%d", &a);
+    for (int i=0; i<5;i++){
+        if(a>5){
+        printf("Erro! Numero maior que 5.");
+        menu();
+        }
+        if (banda[i].ranking==a){
+        printf("A banda no seu top %d eh: %s", a, banda[i].nome);
+        menu();
+        }
+    }
+}
+void genre(){
+    char b[50];
+    printf("Insira um tipo de musica: ");
+    scanf("%s", b);
+    for (int i=0; i<5;i++){
+        if (strcmp(b, banda[i].tipo)==0){
+            printf("Este tipo musical coincide com essa banda no seu ranking: %s", banda[i].nome);
+        }
+    }
+    menu();
+}
+
+void name(){
+    char c[50];
+    printf("Insira o nome de uma banda: ");
+    scanf("%s", c);
+    for (int i=0; i<5;i++){
+        if (strcmp(c, banda[i].nome)==0){
+            printf("Lugar dessa banda no seu top 5: %d", banda[i].ranking);
+            menu();
+        }
+    }
+    printf("Essa musica nao esta no seu top 5.");
+    menu();
+}
+
+
+int main()
+{
+    for (int i=0; i<5;i++){
+        
+        printf("Insira o nome da banda: ");
+        scanf("%s", banda[i].nome);
+        printf("Insira o tipo musical da banda: ");
+        scanf("%s", banda[i].tipo);
+        printf("Insira o numero de integrantes da banda: ");
+        scanf("%d", &banda[i].integrantes);
+        printf("Insira a posicao que esta banda esta no seu top 5: ");
+        scanf("%d", &banda[i].ranking);
+        printf("Banda: %s Tipo musical: %s Numero de integrantes: %d Posicao em seu top 5: %d\n", banda[i].nome, banda[i].tipo, banda[i].integrantes, banda[i].ranking);
+    }
+    menu();
+}  
+void menu(){
+    int d;
+    printf("\n------------------------------------------------------------\n");
+    printf("1-Ver Ranking\n2-Ver Generos\n3-Ver banda\nInsira a funcao desejada: ");
+    scanf("%d", &d);
+    switch(d){
+        case 1:
+            rank();
+            break;
+        case 2:
+            genre();
+            break;
+        case 3:
+            name();
+            break;
+        default:
+            printf("Erro! Funcao indesejada.");
+            break;
+    }
+    return;
+}
